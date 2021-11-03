@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Login</title>
+		<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body ng-app="form">
+		<div
+			ng-controller="MainController"
+			class="shadow-lg bg-white w-10/12 rounded-lg my-8"
+		>
+			<div class="bg-green-500 py-8 px-3 text-center rounded-t-lg">
+				<h1 class="text-white font-semibold text-2xl">{{ originalText }}</h1>
+			</div>
+			<div class="px-8 py-12">
+				<div class="mb-4 flex">
+					<input
+						type="text"
+						placeholder="Nama Lengkap"
+						ng-model="user.nama"
+						class="bg-gray-200 w-full px-4 py-3 rounded-full"
+					/>
+				</div>
+				<div class="mb-4">
+					<input
+						type="email"
+						placeholder="Email"
+						ng-model="user.email"
+						class="bg-gray-200 w-full px-4 py-3 rounded-full"
+					/>
+				</div>
+				<div class="mb-4 flex pl-2">
+					<div class="mr-4">
+						<label class="inline-flex items-center">
+							<input
+								type="radio"
+								class="form-radio"
+								ng-model="user.jenis_kelamin"
+								value="Laki - Laki"
+								checked
+							/>
+							<span class="ml-2">Laki - Laki</span>
+						</label>
+					</div>
+					<div>
+						<label class="inline-flex items-center">
+							<input
+								type="radio"
+								class="form-radio"
+								ng-model="user.jenis_kelamin"
+								value="Perempuan"
+							/>
+							<span class="ml-2">Perempuan</span>
+						</label>
+					</div>
+				</div>
+
+				<div class="mb-4 flex">
+					<input
+						type="text"
+						placeholder="Tempat Lahir"
+						ng-model="user.tempat_lahir"
+						class="bg-gray-200 w-full px-4 py-3 rounded-full mr-2"
+					/>
+					<input
+						type="date"
+						placeholder="Tanggal Lahir"
+						ng-model="user.tanggal_lahir"
+						class="ml-2 bg-gray-200 w-full px-4 py-3 rounded-full"
+					/>
+				</div>
+
+				<div class="mb-4">
+					<textarea
+						ng-model="user.alamat"
+						placeholder="Alamat"
+						class="bg-gray-200 w-full px-4 py-3 rounded-full mr-2"
+					></textarea>
+				</div>
+
+				<div class="mb-4 flex pl-2">
+					<div class="mr-4">
+						<label class="inline-flex items-center">
+							<input
+								type="radio"
+								class="form-radio"
+								ng-model="user.agama"
+								value="Islam"
+							/>
+							<span class="ml-2">Islam</span>
+						</label>
+					</div>
+					<div class="mr-4">
+						<label class="inline-flex items-center">
+							<input
+								type="radio"
+								class="form-radio"
+								ng-model="user.agama"
+								value="Kristen"
+								checked
+							/>
+							<span class="ml-2">Kristen</span>
+						</label>
+					</div>
+					<div class="mr-4">
+						<label class="inline-flex items-center">
+							<input
+								type="radio"
+								class="form-radio"
+								ng-model="user.agama"
+								value="Hindu"
+								checked
+							/>
+							<span class="ml-2">Hindu</span>
+						</label>
+					</div>
+					<div class="mr-4">
+						<label class="inline-flex items-center">
+							<input
+								type="radio"
+								class="form-radio"
+								ng-model="user.agama"
+								value="Buddha"
+								checked
+							/>
+							<span class="ml-2">Buddha</span>
+						</label>
+					</div>
+				</div>
+
+				<div class="mb-4">
+					<input
+						type="text"
+						placeholder="Asal sekolah"
+						ng-model="user.asal_sekolah"
+						class="bg-gray-200 w-full px-4 py-3 rounded-full"
+					/>
+				</div>
+
+				<div class="mb-8">
+					<label class="block text-left">
+						<select
+							ng-model="user.jurusan"
+							class="form-select block w-full mt-1 bg-gray-200 rounded-full"
+						>
+							<option disabled></option>
+							<option value="Informatika Komputer">Informatika Komputer</option>
+							<option value="Komputerisasi Akuntansi">
+								Komputerisasi Akuntansi
+							</option>
+						</select>
+					</label>
+				</div>
+
+				<div class="flex flex-row-reverse">
+					<button
+						ng-click="update(user)"
+						type="submit"
+						class="
+							w-full
+							px-4
+							py-3
+							rounded-full
+							bg-green-500
+							text-white
+							font-medium
+							ml-3
+						"
+					>
+						Save
+					</button>
+					<button
+						ng-click="reset()"
+						type="reset"
+						class="
+							w-full
+							px-4
+							py-3
+							rounded-full
+							bg-gray-400
+							text-white
+							font-medium
+							mr-3
+						"
+					>
+						Reset
+					</button>
+				</div>
+			</div>
+
+			<div class="p-8">
+				<div class="p-4 bg-gray-200 mb-4 rounded-full">
+					User = {{ user | json }}
+				</div>
+				<div class="p-4 bg-gray-200 rounded-full">
+					Master = {{ master | json }}
+				</div>
+			</div>
+		</div>
+
+		<div
+			ng-controller="MainController"
+			class="shadow-lg bg-white w-10/12 rounded-lg my-8 p-8"
+		>
+			<h1 class="font-bold text-2xl mb-4">Selamat Datang Admin</h1>
+			<div>Waktu menunjukan pukul <span my-current-time="format"></span></div>
+			<div>
+				Saya memiliki {{ temans.length }} Sahabat, mereka bernama
+				<input
+					type="search"
+					name=""
+					id=""
+					ng-model="cari"
+					placeholder="filter friends..."
+					aria-label="filter friends"
+					class="bg-gray-200 px-4"
+				/>
+			</div>
+
+			<div class="p-4 border border-black mt-4 rounded-lg">
+				<p
+					ng-repeat="teman in temans | filter:cari as result track by teman.nama"
+				>
+					[{{ $index + 1 }}] {{ teman.nama }} Who is {{ teman.umur }} years old.
+				</p>
+			</div>
+
+			<div class="mt-10">
+				<a href="/#!/" class="text-green-700"><- Logout</a>
+			</div>
+		</div>
+
+		<script src="./js/angular.min.js"></script>
+		<script src="./js/module/app.js"></script>
+		<script src="./js/controllers/MainController.js"></script>
+	</body>
+</html>
