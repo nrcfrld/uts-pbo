@@ -7,7 +7,7 @@ app.controller("LoginController", [
 		$scope.login = function (user) {
 			if ($scope.username == "admin" && $scope.password == "admin") {
 				alert("Berhasil login");
-				window.location.href = "/#!/form";
+				window.location.href = "./#!/form";
 			} else {
 				alert("Username/Password salah");
 			}
